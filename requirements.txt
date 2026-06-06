@@ -1,0 +1,6 @@
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+python-dotenv>=1.0.0
+# openai>=1.30.0  # 可选, 仅在 LLM_API_KEY 设置时使用. 未设置也能正常运行 (会跳过 LLM 卖点生成)
+# fpdf2>=2.7.0    # 可选, 用于生成 PDF 附件. 未安装时邮件照常发 (无 PDF 附件)
