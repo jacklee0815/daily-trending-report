@@ -8,6 +8,7 @@
 """
 from __future__ import annotations
 
+import base64
 import html
 import logging
 import os
@@ -16,6 +17,8 @@ from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr, formatdate
+
+import requests as _requests
 
 from .charts import bar_chart_svg, multi_line_svg, pie_chart_svg, price_chart_svg, rank_chart_svg
 from .ranker import RankedItem, _load_history
@@ -37,12 +40,33 @@ def _badge(rank_change: int, is_new: bool) -> str:
     )
 
 
-def _img_tag(url: str) -> str:
+def _fetch_image_base64(url: str, timeout: int = 5) -> str | None:
+    """下载图片并转为 base64 data URL. 失败返回 None."""
     if not url:
+        return None
+    try:
+        r = _requests.get(url, timeout=timeout, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0"
+        })
+        if r.status_code == 200 and r.content:
+            content_type = r.headers.get("Content-Type", "image/jpeg")
+            if ";" in content_type:
+                content_type = content_type.split(";")[0].strip()
+            b64 = base64.b64encode(r.content).decode("ascii")
+            return f"data:{content_type};base64,{b64}"
+    except Exception as exc:  # noqa: BLE001
+        logger.debug("fetch image failed: %s -> %s", url, exc)
+    return None
+
+
+def _img_tag(url: str, base64_data: str | None = None) -> str:
+    """生成 img 标签. 优先用 base64_data (内嵌), 否则用原始 URL."""
+    if not url and not base64_data:
         return """<div style="width:120px;height:120px;background:#f3f4f6;border-radius:8px;
 display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:12px;">No image</div>"""
+    src = base64_data if base64_data else html.escape(url)
     return (
-        f'<img src="{html.escape(url)}" alt="" width="120" height="120" '
+        f'<img src="{src}" alt="" width="120" height="120" '
         f'style="width:120px;height:120px;object-fit:contain;background:#fff;'
         f'border:1px solid #e5e7eb;border-radius:8px;" />'
     )
@@ -73,7 +97,7 @@ def _badges_html(badges: list[str]) -> str:
     return f'<div style="margin-top:4px;">{"".join(parts)}</div>'
 
 
-def _item_row(idx: int, r: RankedItem) -> str:
+def _item_row(idx: int, r: RankedItem, image_b64: str | None = None) -> str:
     yesterday_text = f"yesterday #{r.rank_yesterday}" if r.rank_yesterday else "new entry"
     sp_html = ""
     if r.selling_point:
@@ -90,7 +114,7 @@ def _item_row(idx: int, r: RankedItem) -> str:
     <div style="font-size:22px;font-weight:700;color:#6b7280;">{idx}</div>
   </td>
   <td style="padding:12px 8px;border-bottom:1px solid #e5e7eb;vertical-align:top;width:140px;">
-    {_img_tag(r.image_url)}
+    {_img_tag(r.image_url, image_b64)}
   </td>
   <td style="padding:12px 8px;border-bottom:1px solid #e5e7eb;vertical-align:top;">
     <div style="font-size:15px;font-weight:600;color:#111827;margin-bottom:4px;">
@@ -298,7 +322,21 @@ def _multi_line_panel(items: list[RankedItem]) -> str:
 
 def build_html(items: list[RankedItem], date_str: str) -> str:
     """构造邮件 HTML 内容."""
-    rows = "".join(_item_row(i + 1, r) for i, r in enumerate(items))
+    # 预下载所有图片转 base64 (并行下载, 邮件内嵌显示)
+    image_cache: dict[str, str | None] = {}
+    urls_to_fetch = [r.image_url for r in items if r.image_url]
+    if urls_to_fetch:
+        logger.info("downloading %d product images for email ...", len(urls_to_fetch))
+        for url in set(urls_to_fetch):
+            if url not in image_cache:
+                image_cache[url] = _fetch_image_base64(url)
+        n_ok = sum(1 for v in image_cache.values() if v)
+        logger.info("images downloaded: %d/%d success", n_ok, len(image_cache))
+
+    rows = "".join(
+        _item_row(i + 1, r, image_cache.get(r.image_url))
+        for i, r in enumerate(items)
+    )
     sources = sorted({r.source for r in items})
     stats = _stats_panel(items)
     bar = _bar_panel(items)
