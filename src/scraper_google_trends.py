@@ -46,7 +46,7 @@ def _fetch(url: str) -> str | None:
 
 def _parse_rss(xml: str) -> list[dict]:
     """解析 RSS, 返回 [{title, traffic, pubDate, picture, news_item}, ...]"""
-    soup = BeautifulSoup(xml, "lxml")
+    soup = BeautifulSoup(xml, features="xml")
     items: list[dict] = []
     for item_el in soup.select("item"):
         title_el = item_el.select_one("title")

@@ -54,6 +54,7 @@ ALLOWED_CATEGORY_HINTS: list[str] = [
     "candle", "incense", "aromatherapy", "essential oil", "soap",
     "bag", "pouch", "wallet", "coin purse", "card holder",
     "pet", "dog ", "cat ",
+    "trending", "search",
 ]
 
 
