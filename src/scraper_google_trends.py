@@ -18,7 +18,7 @@ from .scraper_amazon import Product
 logger = logging.getLogger(__name__)
 
 # Google Trends 公开的 RSS feed (无 key, 不限速)
-TRENDS_RSS = "https://trends.google.com/trends/trendingsearches/daily/rss?geo=US"
+TRENDS_RSS = "https://trends.google.com/trending/rss?geo=US"
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "

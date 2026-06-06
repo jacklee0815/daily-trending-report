@@ -36,6 +36,22 @@ CATEGORIES: dict[str, str] = {
     "cell-phone-mini-accessories": "Phone Mini Accessories 手机小配件",
 }
 
+# slug -> Amazon URL 路径 (Best Sellers 分类页 URL 格式变了)
+CATEGORY_URLS: dict[str, str] = {
+    "fashion-jewelry": "/Best-Sellers-Jewelry/zgbs/fashion-jewelry",
+    "watches": "/Best-Sellers-Watches/zgbs/watches",
+    "toys-and-games": "/Best-Sellers-Toys-Games/zgbs/toys-and-games",
+    "kids": "/Best-Sellers-Baby/kids",
+    "handmade-jewelry": "/Best-Sellers-Handmade-Jewelry/zgbs/handmade-jewelry",
+    "handmade-toys": "/Best-Sellers-Handmade-Toys/zgbs/handmade-toys",
+    "bracelets": "/Best-Sellers-Bracelets/zgbs/bracelets",
+    "earrings": "/Best-Sellers-Earrings/zgbs/earrings",
+    "fashion-watches": "/Best-Sellers-Fashion-Watches/zgbs/fashion-watches",
+    "hair-accessories": "/Best-Sellers-Hair-Accessories/zgbs/hair-accessories",
+    "keychains": "/Best-Sellers-Keychains/zgbs/keychains",
+    "cell-phone-mini-accessories": "/Best-Sellers-Cell-Phone-Accessories/zgbs/cell-phone-mini-accessories",
+}
+
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -189,7 +205,8 @@ def scrape_amazon(categories: Iterable[str] | None = None) -> list[Product]:
 
     for slug in slugs:
         category_name = CATEGORIES.get(slug, slug)
-        url = f"{AMAZON_BASE}/best-sellers/{slug}"
+        url_path = CATEGORY_URLS.get(slug, f"/Best-Sellers/zgbs/{slug}")
+        url = f"{AMAZON_BASE}{url_path}"
         logger.info("scraping Amazon %s (%s)", category_name, url)
         html = _fetch(url, session)
         if not html:
