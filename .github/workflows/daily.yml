@@ -86,7 +86,7 @@ jobs:
     # 仅在 push 到 main 时部署 web UI
     needs: report
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
