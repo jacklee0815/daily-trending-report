@@ -12,6 +12,9 @@ import sys
 import traceback
 from datetime import date, timedelta
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from .email_sender import send_alert, send_report
 from .exporters import csv_bytes, export_pdf
 from .filter import filter_products
