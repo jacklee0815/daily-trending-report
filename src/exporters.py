@@ -63,6 +63,18 @@ def _has_fpdf() -> bool:
         return False
 
 
+def _safe_pdf_text(text: str) -> str:
+    """去掉 emoji 和非 latin-1 字符, 防止 fpdf2 报错."""
+    import re
+    # 去掉 emoji (Unicode 范围)
+    text = re.sub(r'[\U0001F000-\U0001FFFF]', '', text)
+    text = re.sub(r'[\u2600-\u27BF]', '', text)
+    text = re.sub(r'[\uFE00-\uFE0F]', '', text)
+    text = re.sub(r'[\u200D]', '', text)
+    # 只保留 latin-1 可打印字符
+    return text.encode('latin-1', errors='ignore').decode('latin-1')
+
+
 def export_pdf(
     items: Sequence[RankedItem],
     date_str: str,
@@ -87,7 +99,7 @@ def export_pdf(
     # --- 封面 / 标题 ---
     pdf.add_page()
     pdf.set_font("Helvetica", "B", 20)
-    pdf.cell(0, 12, title, ln=True, align="C")
+    pdf.cell(0, 12, _safe_pdf_text(title), ln=True, align="C")
     pdf.set_font("Helvetica", "", 12)
     pdf.cell(0, 8, f"Date: {date_str}  |  Market: US  |  Price <= $20", ln=True, align="C")
     pdf.ln(6)
@@ -113,12 +125,12 @@ def export_pdf(
         change_str = f"+{r.rank_change}" if r.rank_change > 0 else str(r.rank_change)
         row = [
             str(i),
-            r.title[:40],
+            _safe_pdf_text(r.title[:40]),
             f"${r.price_usd:.2f}",
             r.source[:10],
-            r.category[:14],
+            _safe_pdf_text(r.category[:14]),
             change_str,
-            badges_short[:14],
+            _safe_pdf_text(badges_short[:14]),
         ]
         for w, val in zip(col_widths, row):
             pdf.cell(w, 6, val, border=1)
