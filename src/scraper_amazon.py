@@ -162,11 +162,29 @@ def _parse_category_page(html: str, category_slug: str, category_name: str) -> l
             price_text = price_el.get_text(strip=True) if price_el else ""
             price = _parse_price(price_text)
 
-            # 图片
+            # 图片 (多种属性尝试)
             img_el = card.select_one("img")
-            image_url = img_el.get("src", "") if img_el else ""
-            if not image_url and img_el:
-                image_url = img_el.get("data-old-hd", "")
+            image_url = ""
+            if img_el:
+                # 按优先级尝试多个属性
+                for attr in ("src", "data-old-hd", "data-old-hires", "data-a-dynamic-image", "srcset"):
+                    val = img_el.get(attr, "")
+                    if val:
+                        if attr == "data-a-dynamic-image":
+                            # JSON 格式: {"url1": [w, h], "url2": [w, h]}
+                            try:
+                                import json
+                                imgs = json.loads(val)
+                                image_url = list(imgs.keys())[0] if imgs else ""
+                            except (json.JSONDecodeError, IndexError):
+                                image_url = val[:200]  # 截断避免过长
+                        elif attr == "srcset":
+                            # srcset: "url1 1x, url2 2x" -> 取第一个
+                            image_url = val.split(",")[0].strip().split(" ")[0]
+                        else:
+                            image_url = val
+                        if image_url:
+                            break
 
             if not title or not asin:
                 continue
