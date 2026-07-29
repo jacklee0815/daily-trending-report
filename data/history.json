@@ -1,105 +1,4 @@
 {
-  "2026-07-15": [
-    {
-      "key": "trend:uvalde texas",
-      "asin": "trend:uvalde texas",
-      "title": "uvalde texas",
-      "price_usd": 0.0,
-      "url": "https://www.amazon.com/s?k=uvalde%20texas&i=fashion",
-      "image_url": "",
-      "source": "google_trends",
-      "category": "Trending Search 热门搜索",
-      "rank": 1
-    },
-    {
-      "key": "trend:dexter resurrection season 2 actors",
-      "asin": "trend:dexter resurrection season 2 actors",
-      "title": "dexter resurrection season 2 actors",
-      "price_usd": 0.0,
-      "url": "https://www.amazon.com/s?k=dexter%20resurrection%20season%202%20actors&i=fashion",
-      "image_url": "",
-      "source": "google_trends",
-      "category": "Trending Search 热门搜索",
-      "rank": 3
-    },
-    {
-      "key": "trend:r kelly",
-      "asin": "trend:r kelly",
-      "title": "r kelly",
-      "price_usd": 0.0,
-      "url": "https://www.amazon.com/s?k=r%20kelly&i=fashion",
-      "image_url": "",
-      "source": "google_trends",
-      "category": "Trending Search 热门搜索",
-      "rank": 4
-    },
-    {
-      "key": "trend:mortgage news daily",
-      "asin": "trend:mortgage news daily",
-      "title": "mortgage news daily",
-      "price_usd": 0.0,
-      "url": "https://www.amazon.com/s?k=mortgage%20news%20daily&i=fashion",
-      "image_url": "",
-      "source": "google_trends",
-      "category": "Trending Search 热门搜索",
-      "rank": 5
-    },
-    {
-      "key": "trend:houston",
-      "asin": "trend:houston",
-      "title": "houston",
-      "price_usd": 0.0,
-      "url": "https://www.amazon.com/s?k=houston&i=fashion",
-      "image_url": "",
-      "source": "google_trends",
-      "category": "Trending Search 热门搜索",
-      "rank": 6
-    },
-    {
-      "key": "trend:coast guard alcatraz boat search",
-      "asin": "trend:coast guard alcatraz boat search",
-      "title": "coast guard alcatraz boat search",
-      "price_usd": 0.0,
-      "url": "https://www.amazon.com/s?k=coast%20guard%20alcatraz%20boat%20search&i=fashion",
-      "image_url": "",
-      "source": "google_trends",
-      "category": "Trending Search 热门搜索",
-      "rank": 7
-    },
-    {
-      "key": "trend:french open",
-      "asin": "trend:french open",
-      "title": "french open",
-      "price_usd": 0.0,
-      "url": "https://www.amazon.com/s?k=french%20open&i=fashion",
-      "image_url": "",
-      "source": "google_trends",
-      "category": "Trending Search 热门搜索",
-      "rank": 8
-    },
-    {
-      "key": "trend:hormuz",
-      "asin": "trend:hormuz",
-      "title": "hormuz",
-      "price_usd": 0.0,
-      "url": "https://www.amazon.com/s?k=hormuz&i=fashion",
-      "image_url": "",
-      "source": "google_trends",
-      "category": "Trending Search 热门搜索",
-      "rank": 9
-    },
-    {
-      "key": "trend:playstation plus games",
-      "asin": "trend:playstation plus games",
-      "title": "playstation plus games",
-      "price_usd": 0.0,
-      "url": "https://www.amazon.com/s?k=playstation%20plus%20games&i=fashion",
-      "image_url": "",
-      "source": "google_trends",
-      "category": "Trending Search 热门搜索",
-      "rank": 10
-    }
-  ],
   "2026-07-16": [
     {
       "key": "B0C6XBP4CW",
@@ -4377,6 +4276,107 @@
       "title": "rangers vs rays",
       "price_usd": 0.0,
       "url": "https://www.amazon.com/s?k=rangers%20vs%20rays&i=fashion",
+      "image_url": "",
+      "source": "google_trends",
+      "category": "Trending Search 热门搜索",
+      "rank": 10
+    }
+  ],
+  "2026-07-29": [
+    {
+      "key": "trend:naomi osaka",
+      "asin": "trend:naomi osaka",
+      "title": "naomi osaka",
+      "price_usd": 0.0,
+      "url": "https://www.amazon.com/s?k=naomi%20osaka&i=fashion",
+      "image_url": "",
+      "source": "google_trends",
+      "category": "Trending Search 热门搜索",
+      "rank": 1
+    },
+    {
+      "key": "trend:amber alert",
+      "asin": "trend:amber alert",
+      "title": "amber alert",
+      "price_usd": 0.0,
+      "url": "https://www.amazon.com/s?k=amber%20alert&i=fashion",
+      "image_url": "",
+      "source": "google_trends",
+      "category": "Trending Search 热门搜索",
+      "rank": 2
+    },
+    {
+      "key": "trend:amber alert tennessee",
+      "asin": "trend:amber alert tennessee",
+      "title": "amber alert tennessee",
+      "price_usd": 0.0,
+      "url": "https://www.amazon.com/s?k=amber%20alert%20tennessee&i=fashion",
+      "image_url": "",
+      "source": "google_trends",
+      "category": "Trending Search 热门搜索",
+      "rank": 3
+    },
+    {
+      "key": "trend:devil wears prada 2 streaming",
+      "asin": "trend:devil wears prada 2 streaming",
+      "title": "devil wears prada 2 streaming",
+      "price_usd": 0.0,
+      "url": "https://www.amazon.com/s?k=devil%20wears%20prada%202%20streaming&i=fashion",
+      "image_url": "",
+      "source": "google_trends",
+      "category": "Trending Search 热门搜索",
+      "rank": 4
+    },
+    {
+      "key": "trend:tom selleck blue bloods cancellation",
+      "asin": "trend:tom selleck blue bloods cancellation",
+      "title": "tom selleck blue bloods cancellation",
+      "price_usd": 0.0,
+      "url": "https://www.amazon.com/s?k=tom%20selleck%20blue%20bloods%20cancellation&i=fashion",
+      "image_url": "",
+      "source": "google_trends",
+      "category": "Trending Search 热门搜索",
+      "rank": 5
+    },
+    {
+      "key": "trend:katie britt",
+      "asin": "trend:katie britt",
+      "title": "katie britt",
+      "price_usd": 0.0,
+      "url": "https://www.amazon.com/s?k=katie%20britt&i=fashion",
+      "image_url": "",
+      "source": "google_trends",
+      "category": "Trending Search 热门搜索",
+      "rank": 6
+    },
+    {
+      "key": "trend:fútbol",
+      "asin": "trend:fútbol",
+      "title": "fútbol",
+      "price_usd": 0.0,
+      "url": "https://www.amazon.com/s?k=f%C3%BAtbol&i=fashion",
+      "image_url": "",
+      "source": "google_trends",
+      "category": "Trending Search 热门搜索",
+      "rank": 7
+    },
+    {
+      "key": "trend:detención",
+      "asin": "trend:detención",
+      "title": "detención",
+      "price_usd": 0.0,
+      "url": "https://www.amazon.com/s?k=detenci%C3%B3n&i=fashion",
+      "image_url": "",
+      "source": "google_trends",
+      "category": "Trending Search 热门搜索",
+      "rank": 8
+    },
+    {
+      "key": "trend:house beautiful",
+      "asin": "trend:house beautiful",
+      "title": "house beautiful",
+      "price_usd": 0.0,
+      "url": "https://www.amazon.com/s?k=house%20beautiful&i=fashion",
       "image_url": "",
       "source": "google_trends",
       "category": "Trending Search 热门搜索",
